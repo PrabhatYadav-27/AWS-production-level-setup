@@ -1,4 +1,4 @@
 The VPC has public subnet and private subnet in two Availibility zones, Each public subnet contains a  NAT gateway and a load balancer node.
-The servers run in private subnets,are launched and terminated by using an Auto Scali ng group and reveive traffic from the load baalancer.
-The servers can connect tto the internet by using the NAT gateway.
+The servers run in private subnets,are launched and terminated by using an Auto Scaling group and revceive traffic from the load balancer.
+The servers can connect to the internet by using the NAT gateway.
 That will sums of our project.
