@@ -1,0 +1,18 @@
+Create a VPC
+Select VPC and more remove the vpc endpoint with s3 bucket as we don't need it in this project so select vpc endpoint as none.
+Also select NAT gateway per Availiblity Zones, As we have two AZ'S.
+Create a Auto Scaling Group. Create a launch template for ec2
+Select o.s image and create a security group add your recently created vpc.
+Select inbound rules allow ssh and custom TCP from anywhere .Luanch the template.
+G o to autoscaling group console give the name according to you a=select the launching template which we have created and click on next. select the VPC, select both the private subnets az's.
+Select no load balancer and got to next. In group size select the min and max ec2 instances and desired ec2 to be 2 click next.Other setup are optional we can skip it.
+Click on create Auto Scaling Group.
+As both the instances are in private subnet they don't have the public address so it access it we have to do the BASTION HOST OR JUMP HOST
+Create a bastion host instance allow ssh to it so select ssh in security group. Launch this ec2 instance in same vpc as per other instances. Auto -assign public IP shoul be enabled and then launch the instance.
+To acces the bastion host must have the login key
+by using the bellow command you should copy the pem file in your bastion host instance
+" scp -i /path/to/whatever.pem /users/me/path-to-file ec2-user@ec2-55-55-555-555.compute-1.amazonaws.com:~ " or scp -i publickey.pem  publickey.pem user@ipaddress:home/user/ this will copy the file in users directory of bastion host.
+Now we will configure the load balancer for our webapp so that traffic will distribute equally without any loads.
+create a load balancer in public subnet, select both az's and desired vpc.
+Name target group of instances select both the instances check the Port No. Go back to the load balancer select the target group which you have just created .
+Hurray you implemented the production level setup for deploying your webapp in private subnet.
